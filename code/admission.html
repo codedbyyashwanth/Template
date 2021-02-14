@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission</title>
+    <link rel="stylesheet" href="admission.css">
+    <!-- ICON CDN -->
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+ </head>
+<body>
+    <header>
+        <img id="logo" src="https://www.freepnglogos.com/uploads/eagles-png-logo/eagle-sports-png-logos--0.png" alt="">
+        <!-- <h2 id="logo">Logo</h2> -->
+        <div>
+            <nav>
+                <ul>
+                    <li><a class="active" href="#">Home</a></li>
+                    <li><a href="#">Service</a></li>
+                    <li><a href="#">Product</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <ion-icon class="menu" name="menu-sharp"></ion-icon>
+    </header>
+    <main>
+        <div class="school-info" style="color: white;">
+            <h1>National Public School</h1>
+            <p>Hoysala Circle, Subash Nagar, Kengeri Satellite Town,<br>Bengaluru - 560060, Karnataka</p>
+        </div>
+        <div class="content-head">
+            <div>
+                <h3>Student's Application Form</h3>
+            </div>
+            <div class="step-progress">
+                 <div class="outer">
+                    <div class="inner">
+                        <div><button class="btn-active btn"><span class="steps">1</span></button></div>
+                        <div class="line"></div>
+                        <div><button class="btn"><span class="steps">2</span></button></div>
+                        <div class="line"></div>
+                        <div><button class="btn"><span class="steps">3</span></button></div>
+                        <div class="line"></div>
+                        <div><button class="btn"><span class="steps">4</span></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="input-form active-content" id="student-detail" data-tab-content>
+                <h1>Student Detail's</h1>
+                <div class="input-form-field">
+                    <div class="form-field">
+                        <input type="text" name="name" required>
+                        <label for="name"><span class="hint">First Name</span></label>
+                    </div>
+                    <div class="form-field">
+                        <input type="text" name="name" required>
+                        <label for="name"><span class="hint">Last Name</span></label>
+                    </div>
+                    <div class="form-field">
+                        <select name="gender" class="form-control">
+                            <option value="Boy">BOY</option>
+                            <option value="Girl">GIRL</option>
+                        </select>
+                        <label for="name"><span class="hint">Gender</span></label>
+                    </div>
+                    <div class="form-field">
+                        <input type="date" name="name" id="input" value="2001-01-01" required>
+                        <label for="name"><span class="hint">Date of Birth</span></label>
+                    </div>
+                    <div class="form-field">
+                        <input type="text" name="name" required>
+                        <label for="name"><span class="hint">Student ID</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-form" id="parent-detail" data-tab-content>
+                <h1>Parents / Guardian Detail's</h1>
+                <div class="input-form-field"></div>
+            </div>
+            <div class="input-form" id="academic-detail" data-tab-content>
+                <h1>Academic Detail's</h1>
+                <div class="input-form-field"></div>
+            </div>
+            <div class="input-form" id="bank-detail" data-tab-content>
+                <h1>Student Bank Detail's</h1>
+                <div class="input-form-field"></div>
+            </div>
+            <div class="input-form" id="document-detail" data-tab-content>
+                <h1>Documentation Detail's</h1>
+                <div class="input-form-field"></div>
+            </div>
+            <div class="navigation">
+                <button>Previous</button>
+                <button>Next</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+
+        // 1 - TO MANAGE NAVBAR
+        const menu = document.getElementsByClassName("menu")[0];
+        const navbar = document.getElementsByTagName("nav")[0];
+        const header = document.getElementsByTagName("header")[0];
+        const menuClass = menu.classList, headerClass = header.classList;
+
+        menu.addEventListener("click", menuClick);
+
+        function menuClick() {
+            if (menuClass.contains("menu-clicked")) 
+            {
+                menuClass.remove("menu-clicked");
+                navbar.classList.remove("display");
+                headerClass.remove("header-active");
+            } 
+            else 
+            {
+                menuClass.add("menu-clicked");
+                navbar.classList.add("display");
+                headerClass.add("header-active");
+            }
+        }
+
+        // 2 - TO MANAGE STEP PROGRESS BAR
+        var span = document.getElementsByClassName("steps");
+        var button = document.getElementsByClassName("btn");
+        var line = document.getElementsByClassName("line");
+
+        function LineActive(n, index)
+        {
+            if(n)
+                line[index].classList.add("line-active");
+            else
+                line[index].classList.remove("line-active");
+        }
+
+        function ButtonActive(n, index)
+        {
+            if(n)
+                button[index].classList.add("btn-active");
+            else
+                button[index].classList.remove("btn-active");
+        }
+
+        button[0].addEventListener("click", ()=>{
+            ButtonActive(1, 0);
+
+            for(let i=0;i<3;i++)
+                LineActive(0, i); 
+
+            for(let i=1;i < 4;i++)
+                ButtonActive(0, i);
+        });
+        button[1].addEventListener("click", ()=>{
+            ButtonActive(1, 1);
+            LineActive(1, 0); 
+
+            for(let i=1;i<3;i++)
+                LineActive(0, i);  
+            for(let i=2;i < 4;i++)
+                ButtonActive(0, i);
+            for(let i=0;i < 2;i++)
+                ButtonActive(1, i);
+        });
+        button[2].addEventListener("click", ()=>{
+            ButtonActive(1, 2);
+            LineActive(1, 0);  
+            LineActive(1, 1);  
+
+            for(let i=2;i<3;i++)
+                LineActive(0, i);  
+            for(let i=3;i < 4;i++)
+                ButtonActive(0, i);
+            for(let i=0;i < 3;i++)
+                ButtonActive(1, i);
+        });
+        button[3].addEventListener("click", ()=>{
+            ButtonActive(1, 3);
+            LineActive(1, 2); 
+
+            for(let i=2;i>=0;i--)
+                LineActive(1, i);  
+            for(let i=0;i < 4;i++)
+                ButtonActive(1, i);
+        });
+    </script>
+</body>
+</html>
